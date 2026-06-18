@@ -5,7 +5,7 @@ services:
     rootDir: server
     buildCommand: npm install
     startCommand: npm start
-    plan: starter # Starter plan recommended to avoid sleep
+    plan: free # Free plan (spins down after 15 minutes of inactivity)
     envVars:
       - key: NODE_ENV
         value: production
