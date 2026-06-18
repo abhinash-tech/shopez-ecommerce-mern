@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+.pageContainer {
+  font-family: 'Outfit', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.headerActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addBtn {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ── KPI Grid ────────────────────────────────────────────────────────────── */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.kpiCard {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  border: 1px solid #f3f4f6;
+  transition: transform 0.2s;
+}
+
+.kpiCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+}
+
+.kpiHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.kpiLabel {
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.kpiIcon {
+  font-size: 1.5rem;
+  background: #f9fafb;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.kpiBody {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.kpiValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.kpiTrend {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+.trendUp { background: #d1fae5; color: #059669; }
+.trendDown { background: #fee2e2; color: #dc2626; }
+
+/* ── Dashboard Layout (Charts vs Feed) ───────────────────────────────────── */
+.dashboardLayout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+.chartPanel, .feedPanel {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid #f3f4f6;
+}
+
+.panelTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+}
+
+.chartPlaceholder {
+  height: 300px;
+  background: #f9fafb;
+  border: 2px dashed #e5e7eb;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.activityList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.activityItem {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.activityIcon {
+  font-size: 1.25rem;
+  background: #f3f4f6;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+}
+
+.activityText {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.activityTime {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+/* ── Shared Data Table Styles ────────────────────────────────────────────── */
+.tableContainer {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #f3f4f6;
+  overflow: hidden;
+}
+
+.tableToolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tableSearch {
+  padding: 0.6rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  width: 250px;
+  outline: none;
+  font-family: inherit;
+}
+
+.tableSearch:focus { border-color: #4f46e5; }
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dataTable th {
+  background: #f9fafb;
+  text-align: left;
+  padding: 1rem 1.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.dataTable td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.95rem;
+}
+
+.dataTable tbody tr:hover {
+  background: #fdfcff;
+}
+
+.dataTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Common Cell Styles */
+.productCell, .userCell {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.productImg {
+  width: 48px; height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #f3f4f6;
+}
+
+.userAvatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: #4f46e5;
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600;
+}
+
+.cellTitle {
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.cellSub {
+  color: #6b7280;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.badgeSuccess { background: #d1fae5; color: #059669; }
+.badgeWarning { background: #fef3c7; color: #d97706; }
+.badgeError { background: #fee2e2; color: #dc2626; }
+.badgeInfo { background: #dbeafe; color: #1d4ed8; }
+
+.actionBtns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btnEdit { color: #4f46e5; background: none; border: none; cursor: pointer; font-weight: 500; }
+.btnDelete { color: #ef4444; background: none; border: none; cursor: pointer; font-weight: 500; }
+.btnEdit:hover { text-decoration: underline; }
+.btnDelete:hover { text-decoration: underline; }
+
+/* ── Pagination ──────────────────────────────────────────────────────────── */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.pageInfo { color: #6b7280; font-size: 0.9rem; }
+.pageControls { display: flex; gap: 0.5rem; }
+.pageBtn { padding: 0.5rem 1rem; border: 1px solid #d1d5db; border-radius: 6px; background: white; cursor: pointer; }
+.pageBtn:hover { border-color: #4f46e5; color: #4f46e5; }
+.pageBtn:disabled { color: #9ca3af; border-color: #e5e7eb; cursor: not-allowed; }
+
+@media (max-width: 900px) {
+  .dashboardLayout { grid-template-columns: 1fr; }
+  .tableContainer { overflow-x: auto; }
+}

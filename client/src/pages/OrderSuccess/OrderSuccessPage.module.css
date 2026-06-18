@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+.successContainer {
+  font-family: 'Outfit', sans-serif;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.successCard {
+  background: white;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 24px;
+  padding: 4rem 3rem;
+  text-align: center;
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+}
+
+.iconWrapper {
+  width: 80px;
+  height: 80px;
+  background: #d1fae5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem auto;
+  animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.checkIcon {
+  color: #10b981;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 1rem 0;
+}
+
+.subtitle {
+  color: #4b5563;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.orderDetails {
+  background: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border: 1px dashed #d1d5db;
+}
+
+.orderLabel {
+  color: #6b7280;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.orderNumber {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4f46e5;
+}
+
+.emailNote {
+  color: #6b7280;
+  font-size: 0.95rem;
+  margin-bottom: 3rem;
+}
+
+.actionGroup {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.continueBtn {
+  background: #4f46e5;
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.continueBtn:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+}
+
+.trackBtn {
+  background: white;
+  color: #111827;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s;
+}
+
+.trackBtn:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .actionGroup {
+    flex-direction: column;
+  }
+}

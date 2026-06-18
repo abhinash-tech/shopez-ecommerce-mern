@@ -1,0 +1,63 @@
+.carouselSection {
+  margin: 2rem 0;
+}
+
+.carouselHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.carouselTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+}
+
+.carouselContainer {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem; /* Space for shadow and scrollbar */
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-left: -0.5rem; /* Offset padding */
+  margin-right: -0.5rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for a cleaner look but keep functionality */
+.carouselContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carouselContainer::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 4px;
+}
+
+.carouselContainer::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.carouselContainer::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+.carouselItem {
+  flex: 0 0 280px; /* Fixed width for cards in carousel */
+  min-width: 280px;
+}
+
+@media (max-width: 600px) {
+  .carouselItem {
+    flex: 0 0 240px;
+    min-width: 240px;
+  }
+}
