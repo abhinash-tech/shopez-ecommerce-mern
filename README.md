@@ -1,184 +1,115 @@
-<div align="center">
-  <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80" alt="ShopEZ Banner" width="100%" style="border-radius:12px; max-height: 300px; object-fit: cover;" />
-  <br/>
-  <h1>🛍️ ShopEZ — Premium E-Commerce Platform</h1>
-  <p>A modern, full-stack, multi-vendor e-commerce platform built with the MERN stack.</p>
+# ShopEZ E-Commerce Platform
 
-  [![React](https://img.shields.io/badge/React-18-blue.svg?style=flat-square&logo=react)](https://reactjs.org/)
-  [![Node.js](https://img.shields.io/badge/Node.js-20-green.svg?style=flat-square&logo=nodedotjs)](https://nodejs.org/)
-  [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248.svg?style=flat-square&logo=mongodb)](https://www.mongodb.com/)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-</div>
+ShopEZ is a full-stack, multi-vendor e-commerce platform built using the MERN stack (MongoDB, Express, React, Node.js). 
+
+This project is designed to provide a straightforward and secure online shopping experience. It features two distinct areas: a public storefront for customers to browse and buy products, and a private admin dashboard for managing the store.
 
 ---
 
-## 📖 Project Description
+## Key Features
 
-ShopEZ is a robust, production-ready e-commerce solution designed to deliver a premium, seamless shopping experience. Built from the ground up using the MERN stack (MongoDB, Express, React, Node.js), it features a completely decoupled architecture separating the REST API backend from the highly responsive client-side interface. 
+### For Customers
+- **Public Storefront**: Browse products by category, search for specific items, and view detailed product information.
+- **Secure Authentication**: Create an account and log in securely.
+- **Cart & Checkout**: Add items to a shopping cart, proceed through a multi-step checkout process, and place orders.
+- **User Dashboard**: Track past orders and manage your profile settings.
 
-The platform supports **Role-Based Access Control (RBAC)**, effortlessly separating the Customer shopping journey from the Administrative management dashboard. Whether you're browsing the latest tech gadgets or managing inventory, ShopEZ provides a lightning-fast and secure environment.
-
----
-
-## ✨ Features
-
-- **🛍️ Public Storefront**: Modern UI with grid layouts, advanced product filtering, category browsing, and responsive carousels.
-- **🔐 Secure Authentication**: Custom JWT (JSON Web Tokens) implementation with automated `httpOnly` cookie refresh cycles for persistent, secure login states.
-- **🛒 Persistent Cart & Wishlist**: Global state management via Context API to seamlessly track user selections across sessions.
-- **💳 Checkout Flow**: Multi-step checkout process with chronological order timeline tracking and order history dashboard.
-- **🎛️ Admin Command Center**: Dedicated dashboard for administrators to manage inventory, track revenue KPIs, and moderate user activity.
-- **🛡️ Enterprise Security**: Built-in rate limiting, helmet headers, strict input validation, and NoSQL injection prevention.
-- **⚡ Performance Optimized**: React Code-splitting (Lazy loading/Suspense), Vite bundling, and backend compression middleware ensure rapid load times.
+### For Administrators
+- **Admin Command Center**: A dedicated portal accessible only to administrators.
+- **Dashboard Overview**: View live statistics on total revenue, orders, products, and registered customers.
+- **Product Management**: Add new products, update existing ones, and manage inventory stock levels.
+- **Order Management**: Track customer orders and update their status (e.g., from Processing to Shipped or Delivered).
+- **Customer Management**: View the list of registered users and remove accounts if necessary.
 
 ---
 
-## 🛠️ Tech Stack
+## Technologies Used
 
-### Frontend (Client)
-- **Framework**: React 18
-- **Build Tool**: Vite
-- **Routing**: React Router DOM v6
-- **State Management**: React Context API
-- **Styling**: Vanilla CSS Modules (BEM architecture) + CSS Variables
-- **Network**: Axios (with custom interceptors)
+### Frontend
+- **React 18**: Core library for building the user interface.
+- **Vite**: Fast frontend build tool.
+- **React Router DOM**: Handles navigation between different pages.
+- **Context API**: Manages global state for things like the user's cart and authentication status.
+- **Vanilla CSS**: Custom styling using CSS modules for scoped, maintainable code.
 
-### Backend (Server)
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: MongoDB & Mongoose ORM
-- **Security**: bcryptjs, jsonwebtoken, helmet, express-rate-limit
-- **Architecture**: MVC (Model-View-Controller)
+### Backend
+- **Node.js & Express**: Powers the REST API server.
+- **MongoDB & Mongoose**: NoSQL database for storing products, users, and orders.
+- **JSON Web Tokens (JWT)**: Used for secure user authentication.
+- **Bcrypt**: Hashes passwords for database security.
 
 ---
 
-## 🚀 Installation Guide
+## How to Install and Run Locally
 
-Follow these steps to get the project running locally on your machine.
+Follow these instructions to run the application on your own computer.
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- MongoDB (Local instance or MongoDB Atlas cluster)
+Make sure you have installed:
+- Node.js (version 18 or above)
+- MongoDB (Running locally or a cloud instance like MongoDB Atlas)
 - Git
 
-### 1. Clone the repository
+### 1. Clone the Repository
+Open your terminal and run:
 ```bash
 git clone https://github.com/yourusername/shopez.git
 cd shopez
 ```
 
-### 2. Setup Backend
+### 2. Set Up the Backend
+Navigate to the server directory and install dependencies:
 ```bash
 cd server
 npm install
 ```
-*Create a `.env` file in the `/server` directory (see Environment Variables section below).*
-```bash
-# Start the backend server in development mode
-npm run dev
-```
 
-### 3. Setup Frontend
-Open a new terminal window:
-```bash
-cd client
-npm install
-# Start the Vite development server
-npm run dev
-```
-
-The application will now be running. The frontend typically runs on `http://localhost:5173` and the backend on `http://localhost:5000`.
-
----
-
-## 🔐 Environment Variables
-
-To run this project, you will need to add the following environment variables to your `server/.env` file. A template is provided in `server/.env.example`.
-
-**Note:** Never commit your actual `.env` file to version control. The repository's `.gitignore` is already configured to ignore it.
-
+Create a `.env` file inside the `server` folder and add the following configuration:
 ```env
 # Server Configuration
 NODE_ENV=development
 PORT=5000
 CLIENT_URL=http://localhost:5173
 
-# Database
-MONGO_URI=mongodb+srv://<user>:<password>@cluster0.mongodb.net/shopez?retryWrites=true&w=majority
+# Database Connection
+MONGO_URI=your_mongodb_connection_string
 
-# JWT Authentication
-JWT_ACCESS_SECRET=your_super_secret_access_token_key_min_32_chars
-JWT_REFRESH_SECRET=your_super_secret_refresh_token_key_min_32_chars
+# Authentication Secrets
+JWT_ACCESS_SECRET=your_access_token_secret_key
+JWT_REFRESH_SECRET=your_refresh_token_secret_key
 JWT_ACCESS_EXPIRES_IN=15m
 JWT_REFRESH_EXPIRES_IN=7d
 ```
 
----
-
-## 📁 Folder Structure
-
-```text
-📦 shopez
- ┣ 📂 client                  # React Frontend (Vite)
- ┃ ┣ 📂 src
- ┃ ┃ ┣ 📂 assets            # Static images and icons
- ┃ ┃ ┣ 📂 components        # Reusable UI components (Navbar, ProductCard, etc.)
- ┃ ┃ ┣ 📂 context           # Global state (AuthContext, CartContext)
- ┃ ┃ ┣ 📂 layouts           # Page wrappers (MainLayout, DashboardLayout)
- ┃ ┃ ┣ 📂 pages             # Route components (Home, Cart, Admin)
- ┃ ┃ ┣ 📂 routes            # Route definitions and ProtectedRoute guards
- ┃ ┃ ┗ 📂 services          # Axios API interceptors and fetching logic
- ┃ ┗ 📜 package.json
- ┃
- ┣ 📂 server                  # Node.js / Express Backend
- ┃ ┣ 📂 config              # DB connection and Environment variable validation
- ┃ ┣ 📂 controllers         # Route request handlers
- ┃ ┣ 📂 middlewares         # Auth, Error handling, Rate limiting
- ┃ ┣ 📂 models              # Mongoose database schemas
- ┃ ┣ 📂 routes              # Express API route definitions
- ┃ ┣ 📂 utils               # Helper functions and custom Error classes
- ┃ ┣ 📜 app.js              # Express app configuration
- ┃ ┣ 📜 server.js           # Entry point and server initialization
- ┃ ┗ 📜 package.json
- ┃
- ┗ 📜 README.md
+Start the backend server:
+```bash
+npm run dev
 ```
 
----
+### 3. Set Up the Frontend
+Open a new terminal window, navigate to the client directory, and install dependencies:
+```bash
+cd client
+npm install
+```
 
-## 📡 API Documentation
+Start the frontend server:
+```bash
+npm run dev
+```
 
-The backend exposes a structured REST API under the `/api/v1` prefix.
-
-### Public Routes
-- `GET /api/v1/products` - Retrieve all products (supports pagination & filtering)
-- `GET /api/v1/products/:id` - Retrieve a single product by ID
-- `POST /api/v1/auth/register` - Create a new user account
-- `POST /api/v1/auth/login` - Authenticate user and receive JWT
-
-### Protected Routes (Requires Bearer Token)
-- `GET /api/v1/auth/me` - Get current authenticated user profile
-- `GET /api/v1/orders/myorders` - Retrieve order history for the logged-in user
-- `POST /api/v1/orders` - Create a new order
-
-### Admin Routes (Requires Admin Role)
-- `POST /api/v1/products` - Create a new product listing
-- `PUT /api/v1/products/:id` - Update an existing product
-- `DELETE /api/v1/products/:id` - Delete a product
-- `GET /api/v1/users` - List all registered users
+The application will be running at `http://localhost:5173`.
 
 ---
 
-## 🚀 Future Enhancements
+## Project Structure
 
-While ShopEZ is fully functional, here are some planned features for future iterations:
-- [ ] **Payment Gateway Integration**: Direct integration with Stripe or Razorpay for seamless checkout.
-- [ ] **Real-time Order Tracking**: WebSocket implementation to provide live updates on order shipping status.
-- [ ] **Product Reviews & Ratings**: Allow verified buyers to leave reviews and rate products.
-- [ ] **Advanced Analytics Dashboard**: Visual charts and graphs for the admin panel using libraries like Chart.js.
-- [ ] **Social Login**: OAuth2 integration with Google and Facebook for quicker onboarding.
+- `/client` - Contains all the React frontend code (components, pages, services).
+- `/server` - Contains the Express backend code (controllers, models, routes).
 
 ---
 
-<div align="center">
-  <p>Built with ❤️ by an enthusiastic developer.</p>
-</div>
+## Future Enhancements
+- Integration with payment gateways like Stripe for processing real transactions.
+- A review system for customers to rate products.
+- Real-time order tracking notifications.

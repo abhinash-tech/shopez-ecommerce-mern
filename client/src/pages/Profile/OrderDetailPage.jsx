@@ -55,7 +55,7 @@ const OrderDetailPage = () => {
   return (
     <div className={styles.pageContainer}>
       <div className={styles.headerRow}>
-        <Link to="/dashboard/orders" className={styles.backLink}>&larr; Back to Orders</Link>
+        <Link to="/dashboard/profile/orders" className={styles.backLink}>&larr; Back to Orders</Link>
         <h1 className={styles.pageTitle}>Order #{order._id.slice(-6).toUpperCase()}</h1>
       </div>
 

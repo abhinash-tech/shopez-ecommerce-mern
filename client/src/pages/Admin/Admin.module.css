@@ -284,7 +284,97 @@
 .pageControls { display: flex; gap: 0.5rem; }
 .pageBtn { padding: 0.5rem 1rem; border: 1px solid #d1d5db; border-radius: 6px; background: white; cursor: pointer; }
 .pageBtn:hover { border-color: #4f46e5; color: #4f46e5; }
-.pageBtn:disabled { color: #9ca3af; border-color: #e5e7eb; cursor: not-allowed; }
+.pageBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Forms ───────────────────────────────────────────────────────────────── */
+.formContainer {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  max-width: 800px;
+}
+
+.adminForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formRow {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.formRow > * {
+  flex: 1;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+  padding: 0.8rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.2s;
+  background: #f9fafb;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+  background: white;
+  border-color: #4f46e5;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.btnSecondary {
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnSecondary:hover {
+  background: #e5e7eb;
+}
+
+.errorMessage {
+  background: #fef2f2;
+  color: #ef4444;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #fecaca;
+}
 
 @media (max-width: 900px) {
   .dashboardLayout { grid-template-columns: 1fr; }

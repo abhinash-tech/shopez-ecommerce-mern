@@ -4,7 +4,7 @@ const users = [
   {
     name: 'Admin User',
     email: 'admin@shopez.com',
-    password: 'Password123!',
+    password: 'admin123',
     role: 'admin',
   },
   {

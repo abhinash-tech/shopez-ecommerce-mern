@@ -44,4 +44,20 @@ const toggleWishlist = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = { getProfile, toggleWishlist };
+const getAllUsers = asyncHandler(async (req, res) => {
+  if (req.user.role !== 'admin' && req.user.role !== 'super_admin') {
+    throw new AppError('Not authorized', 403);
+  }
+  const users = await User.find().select('-password').sort({ createdAt: -1 });
+  res.status(200).json({ success: true, data: users });
+});
+
+const deleteUser = asyncHandler(async (req, res) => {
+  if (req.user.role !== 'admin' && req.user.role !== 'super_admin') {
+    throw new AppError('Not authorized', 403);
+  }
+  await User.findByIdAndDelete(req.params.id);
+  res.status(200).json({ success: true, message: 'User deleted' });
+});
+
+module.exports = { getProfile, toggleWishlist, getAllUsers, deleteUser };

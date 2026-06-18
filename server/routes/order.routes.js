@@ -22,6 +22,7 @@ router.get('/', orderController.getMyOrders);
 router.get('/:id', orderController.getOrderById);
 
 // Admin/Vendor Routes (Role enforcement handled in controller currently)
+router.get('/all', orderController.getAllOrders);
 router.patch('/:id/status', orderController.updateOrderStatus);
 
 module.exports = router;

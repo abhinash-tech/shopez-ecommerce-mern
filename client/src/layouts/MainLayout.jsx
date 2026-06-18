@@ -1,4 +1,6 @@
-import { Outlet } from 'react-router-dom';
+import { useContext } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 
@@ -7,6 +9,13 @@ import Footer from '../components/Footer/Footer';
  * Contains the shared Navbar and Footer.
  */
 const MainLayout = () => {
+  const { user } = useContext(AuthContext);
+
+  // Strict Segregation: Admins must never see customer shopping pages after login.
+  if (user && user.role === 'admin') {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#fcfcfd' }}>
       

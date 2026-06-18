@@ -1,47 +1,70 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../../services/api';
 import styles from './Admin.module.css';
 
 const AdminProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const navigate = useNavigate();
+
+  const fetchProducts = async () => {
+    try {
+      const res = await api.get('/products');
+      setProducts(res.data.data);
+    } catch (err) {
+      console.error('Failed to fetch products', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Mock Fetching
-    setTimeout(() => {
-      setProducts([
-        { id: 'PRD-01', name: 'Sony WH-1000XM5', price: 29900, stock: 45, status: 'Active', isApproved: true, vendor: 'TechHub Ltd' },
-        { id: 'PRD-02', name: 'Apple Watch Series 9', price: 41900, stock: 12, status: 'Active', isApproved: true, vendor: 'iStore' },
-        { id: 'PRD-03', name: 'Unknown Brand Smart Ring', price: 5900, stock: 100, status: 'Pending', isApproved: false, vendor: 'GadgetZone' },
-        { id: 'PRD-04', name: 'Nike Air Max 270', price: 12995, stock: 0, status: 'Out of Stock', isApproved: true, vendor: 'Nike Official' },
-      ]);
-      setLoading(false);
-    }, 500);
+    fetchProducts();
   }, []);
+
+  const handleDelete = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this product?')) return;
+    try {
+      await api.delete(`/products/${id}`);
+      setProducts(products.filter(p => p._id !== id));
+    } catch (err) {
+      console.error('Failed to delete product', err);
+      alert('Error deleting product');
+    }
+  };
 
   const getStatusBadge = (status) => {
     switch(status) {
-      case 'Active': return styles.badgeSuccess;
-      case 'Pending': return styles.badgeWarning;
-      case 'Out of Stock': return styles.badgeError;
+      case 'active': return styles.badgeSuccess;
+      case 'pending_approval': return styles.badgeWarning;
+      case 'out_of_stock': return styles.badgeError;
       default: return styles.badgeInfo;
     }
   };
+
+  const filteredProducts = products.filter(p => 
+    p.name.toLowerCase().includes(search.toLowerCase()) || 
+    (p.sku && p.sku.toLowerCase().includes(search.toLowerCase()))
+  );
 
   return (
     <div className={styles.pageContainer}>
       <div className={styles.headerActions}>
         <h1 className={styles.pageTitle}>Manage Products</h1>
-        <button className={styles.addBtn}>+ Add Product</button>
+        <button className={styles.addBtn} onClick={() => navigate('/admin/products/add')}>+ Add Product</button>
       </div>
 
       <div className={styles.tableContainer}>
         <div className={styles.tableToolbar}>
-          <input type="text" placeholder="Search products..." className={styles.tableSearch} />
-          <select className={styles.tableSearch}>
-            <option>All Statuses</option>
-            <option>Active</option>
-            <option>Pending Approval</option>
-          </select>
+          <input 
+            type="text" 
+            placeholder="Search products by name or SKU..." 
+            className={styles.tableSearch} 
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
         </div>
 
         <div style={{ overflowX: 'auto' }}>
@@ -49,7 +72,6 @@ const AdminProductsPage = () => {
             <thead>
               <tr>
                 <th>Product Info</th>
-                <th>Vendor</th>
                 <th>Price</th>
                 <th>Stock</th>
                 <th>Status</th>
@@ -58,32 +80,31 @@ const AdminProductsPage = () => {
             </thead>
             <tbody>
               {loading ? (
-                <tr><td colSpan="6" style={{textAlign: 'center', padding: '2rem'}}>Loading...</td></tr>
+                <tr><td colSpan="5" style={{textAlign: 'center', padding: '2rem'}}>Loading...</td></tr>
+              ) : filteredProducts.length === 0 ? (
+                <tr><td colSpan="5" style={{textAlign: 'center', padding: '2rem'}}>No products found.</td></tr>
               ) : (
-                products.map(product => (
-                  <tr key={product.id}>
+                filteredProducts.map(product => (
+                  <tr key={product._id}>
                     <td>
                       <div className={styles.productCell}>
-                        <div className={styles.productImg}></div>
+                        <img src={product.images?.[0] || 'https://via.placeholder.com/40'} alt={product.name} className={styles.productImg} />
                         <div>
                           <p className={styles.cellTitle}>{product.name}</p>
-                          <p className={styles.cellSub}>ID: {product.id}</p>
+                          <p className={styles.cellSub}>SKU: {product.sku}</p>
                         </div>
                       </div>
                     </td>
-                    <td>{product.vendor}</td>
-                    <td style={{fontWeight: 600}}>₹{product.price.toLocaleString('en-IN')}</td>
-                    <td>{product.stock}</td>
+                    <td style={{fontWeight: 600}}>₹{product.basePrice?.toLocaleString('en-IN')}</td>
+                    <td>{product.stockQuantity}</td>
                     <td>
                       <span className={`${styles.badge} ${getStatusBadge(product.status)}`}>
-                        {product.status}
+                        {product.status || 'draft'}
                       </span>
                     </td>
                     <td>
                       <div className={styles.actionBtns}>
-                        <button className={styles.btnEdit}>Edit</button>
-                        {!product.isApproved && <button className={styles.btnEdit} style={{color: '#059669'}}>Approve</button>}
-                        <button className={styles.btnDelete}>Delete</button>
+                        <button className={styles.btnDelete} onClick={() => handleDelete(product._id)}>Delete</button>
                       </div>
                     </td>
                   </tr>
@@ -91,14 +112,6 @@ const AdminProductsPage = () => {
               )}
             </tbody>
           </table>
-        </div>
-
-        <div className={styles.pagination}>
-          <span className={styles.pageInfo}>Showing 1 to 4 of 4 entries</span>
-          <div className={styles.pageControls}>
-            <button className={styles.pageBtn} disabled>Previous</button>
-            <button className={styles.pageBtn} disabled>Next</button>
-          </div>
         </div>
       </div>
     </div>

@@ -70,7 +70,7 @@ const OrdersPage = () => {
                 </p>
                 <div className={styles.orderFooter}>
                   <span className={styles.orderTotal}>₹{order.totalAmount.toLocaleString('en-IN')}</span>
-                  <Link to={`/dashboard/orders/${order._id}`} className={styles.viewDetailsBtn}>
+                  <Link to={`/dashboard/profile/orders/${order._id}`} className={styles.viewDetailsBtn}>
                     View Details
                   </Link>
                 </div>

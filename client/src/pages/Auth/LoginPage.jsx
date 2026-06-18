@@ -10,6 +10,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [loginType, setLoginType] = useState('customer');
 
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -24,7 +25,13 @@ const LoginPage = () => {
       // So res.data = { user, accessToken }
       const res = await authService.login(email, password);
       login(res.data.user, res.data.accessToken);
-      navigate('/');
+      
+      // Role-based redirect
+      if (res.data.user.role === 'admin') {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
     } finally {
@@ -48,8 +55,30 @@ const LoginPage = () => {
         <div className={styles.authFormSection}>
           <div className={styles.formWrapper}>
             <Link to="/" className={styles.backHomeBtn}>&larr; Back to Home</Link>
-            <h1 className={styles.formTitle}>Sign In</h1>
-            <p className={styles.formSubtitle}>Enter your details to access your account.</p>
+            
+            <div className={styles.loginTabs}>
+              <button 
+                type="button" 
+                className={`${styles.loginTab} ${loginType === 'customer' ? styles.loginTabActive : ''}`}
+                onClick={() => setLoginType('customer')}
+              >
+                Customer
+              </button>
+              <button 
+                type="button" 
+                className={`${styles.loginTab} ${loginType === 'admin' ? styles.loginTabActive : ''}`}
+                onClick={() => setLoginType('admin')}
+              >
+                Admin
+              </button>
+            </div>
+
+            <h1 className={styles.formTitle}>{loginType === 'admin' ? 'Admin Sign In' : 'Sign In'}</h1>
+            <p className={styles.formSubtitle}>
+              {loginType === 'admin' 
+                ? 'Enter your administrator credentials to access the command center.' 
+                : 'Enter your details to access your account.'}
+            </p>
 
             {error && <div className={styles.errorMessage}>{error}</div>}
 
@@ -107,7 +136,11 @@ const LoginPage = () => {
             </form>
 
             <div className={styles.formFooter}>
-              <p>Don't have an account? <Link to="/register" className={styles.footerLink}>Create one</Link></p>
+              {loginType === 'admin' ? (
+                <p>Protected area. Authorized personnel only.</p>
+              ) : (
+                <p>Don't have an account? <Link to="/register" className={styles.footerLink}>Create one</Link></p>
+              )}
             </div>
           </div>
         </div>

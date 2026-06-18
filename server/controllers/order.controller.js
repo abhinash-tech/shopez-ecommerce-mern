@@ -143,9 +143,18 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
   });
 });
 
+const getAllOrders = asyncHandler(async (req, res) => {
+  if (req.user.role !== 'admin' && req.user.role !== 'super_admin') {
+    throw new AppError('Not authorized', 403, 'FORBIDDEN');
+  }
+  const orders = await Order.find().populate('user', 'name email').sort({ createdAt: -1 });
+  res.status(200).json({ success: true, data: orders });
+});
+
 module.exports = {
   placeOrder,
   getMyOrders,
   getOrderById,
   updateOrderStatus,
+  getAllOrders,
 };

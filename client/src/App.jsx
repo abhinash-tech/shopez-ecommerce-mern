@@ -20,6 +20,7 @@ const CheckoutPage = lazy(() => import('./pages/Checkout/CheckoutPage'));
 const OrderSuccessPage = lazy(() => import('./pages/OrderSuccess/OrderSuccessPage'));
 
 // Profile Pages
+const DashboardHome = lazy(() => import('./pages/Dashboard/DashboardHome'));
 const AccountPage = lazy(() => import('./pages/Profile/AccountPage'));
 const OrdersPage = lazy(() => import('./pages/Profile/OrdersPage'));
 const OrderDetailPage = lazy(() => import('./pages/Profile/OrderDetailPage'));
@@ -28,6 +29,7 @@ const WishlistPage = lazy(() => import('./pages/Profile/WishlistPage'));
 // Admin Pages
 const AdminDashboardPage = lazy(() => import('./pages/Admin/AdminDashboardPage'));
 const AdminProductsPage = lazy(() => import('./pages/Admin/AdminProductsPage'));
+const AdminAddProductPage = lazy(() => import('./pages/Admin/AdminAddProductPage'));
 const AdminOrdersPage = lazy(() => import('./pages/Admin/AdminOrdersPage'));
 const AdminUsersPage = lazy(() => import('./pages/Admin/AdminUsersPage'));
 
@@ -58,21 +60,25 @@ function App() {
               <Route path="/unauthorized" element={<Unauthorized />} />
 
               {/* Protected Customer Routes (Dashboard) */}
-              <Route element={<ProtectedRoute />}>
+              <Route element={<ProtectedRoute requiredRoles={['customer']} />}>
                 <Route path="/dashboard" element={<MainLayout />}>
-                  <Route element={<ProfileLayout />}>
+                  <Route index element={<DashboardHome />} />
+                  <Route path="profile" element={<ProfileLayout />}>
                     <Route index element={<AccountPage />} />
                     <Route path="orders" element={<OrdersPage />} />
                     <Route path="orders/:id" element={<OrderDetailPage />} />
                     <Route path="wishlist" element={<WishlistPage />} />
                   </Route>
                 </Route>
+              </Route>
 
-                {/* Protected Admin/Vendor Routes */}
+              {/* Protected Admin Routes */}
+              <Route element={<ProtectedRoute requiredRoles={['admin', 'super_admin']} />}>
                 <Route path="/admin" element={<DashboardLayout />}>
                   <Route index element={<Navigate to="dashboard" replace />} />
                   <Route path="dashboard" element={<AdminDashboardPage />} />
                   <Route path="products" element={<AdminProductsPage />} />
+                  <Route path="products/add" element={<AdminAddProductPage />} />
                   <Route path="orders" element={<AdminOrdersPage />} />
                   <Route path="users" element={<AdminUsersPage />} />
                 </Route>

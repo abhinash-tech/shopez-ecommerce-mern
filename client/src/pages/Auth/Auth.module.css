@@ -80,6 +80,39 @@
   background: white;
 }
 
+.loginTabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  background: #f3f4f6;
+  padding: 0.5rem;
+  border-radius: 16px;
+}
+
+.loginTab {
+  flex: 1;
+  padding: 0.75rem;
+  text-align: center;
+  border: none;
+  background: transparent;
+  border-radius: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.loginTab:hover {
+  color: #111827;
+}
+
+.loginTabActive {
+  background: white;
+  color: #4f46e5;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
 .formWrapper {
   width: 100%;
   max-width: 400px;

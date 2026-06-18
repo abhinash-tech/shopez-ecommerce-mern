@@ -97,9 +97,8 @@ const createProduct = asyncHandler(async (req, res) => {
   const productData = {
     ...req.body,
     vendor: req.user._id, 
-    // Force default status on creation
-    status: 'draft',
-    isApproved: false,
+    status: (req.user.role === 'admin' || req.user.role === 'super_admin') && req.body.status ? req.body.status : 'draft',
+    isApproved: (req.user.role === 'admin' || req.user.role === 'super_admin') ? true : false,
   };
 
   const product = await Product.create(productData);

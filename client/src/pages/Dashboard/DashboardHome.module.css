@@ -1,0 +1,103 @@
+/* DashboardHome.module.css */
+.dashboardContainer {
+  font-family: 'Outfit', sans-serif;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem 4%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.welcomeSection {
+  margin-bottom: 1rem;
+}
+
+.welcomeHeader {
+  margin-bottom: 2rem;
+}
+
+.welcomeTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -1px;
+}
+
+.welcomeSubtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.quickActionsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.quickActionCard {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  color: inherit;
+}
+
+.quickActionCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+  border-color: #d1d5db;
+}
+
+.quickActionIcon {
+  font-size: 2rem;
+  margin-right: 1.25rem;
+  background: #f3f4f6;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+}
+
+.quickActionText h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.25rem 0;
+}
+
+.quickActionText p {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.carouselsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .quickActionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .quickActionsGrid {
+    grid-template-columns: 1fr;
+  }
+  .welcomeTitle {
+    font-size: 1.75rem;
+  }
+}

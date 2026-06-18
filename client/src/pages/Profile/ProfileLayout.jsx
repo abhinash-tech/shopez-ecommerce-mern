@@ -10,7 +10,7 @@ const ProfileLayout = () => {
         <h2 className={styles.sidebarTitle}>My Account</h2>
         <nav className={styles.navMenu}>
           <NavLink 
-            to="/dashboard" 
+            to="/dashboard/profile" 
             end
             className={({ isActive }) => isActive ? `${styles.navItem} ${styles.activeNavItem}` : styles.navItem}
           >
@@ -18,28 +18,28 @@ const ProfileLayout = () => {
           </NavLink>
           
           <NavLink 
-            to="/dashboard/orders" 
+            to="/dashboard/profile/orders" 
             className={({ isActive }) => isActive ? `${styles.navItem} ${styles.activeNavItem}` : styles.navItem}
           >
             Order History
           </NavLink>
           
           <NavLink 
-            to="/dashboard/wishlist" 
+            to="/dashboard/profile/wishlist" 
             className={({ isActive }) => isActive ? `${styles.navItem} ${styles.activeNavItem}` : styles.navItem}
           >
             My Wishlist
           </NavLink>
           
           <NavLink 
-            to="/dashboard/addresses" 
+            to="/dashboard/profile/addresses" 
             className={({ isActive }) => isActive ? `${styles.navItem} ${styles.activeNavItem}` : styles.navItem}
           >
             Saved Addresses
           </NavLink>
           
           <NavLink 
-            to="/dashboard/settings" 
+            to="/dashboard/profile/settings" 
             className={({ isActive }) => isActive ? `${styles.navItem} ${styles.activeNavItem}` : styles.navItem}
           >
             Settings

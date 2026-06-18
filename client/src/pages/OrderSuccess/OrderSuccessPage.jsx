@@ -29,7 +29,7 @@ const OrderSuccessPage = () => {
 
         <div className={styles.actionGroup}>
           <Link to="/products" className={styles.continueBtn}>Continue Shopping</Link>
-          <Link to="/dashboard" className={styles.trackBtn}>Track Order</Link>
+          <Link to="/dashboard/profile/orders" className={styles.trackBtn}>Track Order</Link>
         </div>
 
       </div>

@@ -31,21 +31,28 @@ const DashboardLayout = () => {
           </NavLink>
           <NavLink 
             to="/admin/products" 
+            end
             className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
             <span className={styles.icon}>📦</span> Products
           </NavLink>
           <NavLink 
+            to="/admin/products/add" 
+            className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
+          >
+            <span className={styles.icon}>➕</span> Add Product
+          </NavLink>
+          <NavLink 
             to="/admin/orders" 
             className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
-            <span className={styles.icon}>🛒</span> Orders
+            <span className={styles.icon}>📋</span> Orders
           </NavLink>
           <NavLink 
             to="/admin/users" 
             className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
-            <span className={styles.icon}>👥</span> Users
+            <span className={styles.icon}>👥</span> Customers
           </NavLink>
         </nav>
 
