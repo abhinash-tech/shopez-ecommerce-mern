@@ -153,7 +153,7 @@ const ProductSchema = new mongoose.Schema(
 );
 
 // ── Indexes ───────────────────────────────────────────────────────────────────
-ProductSchema.index({ slug: 1 });
+// ProductSchema.index({ slug: 1 }); // Removed: Created automatically by unique: true
 ProductSchema.index({ category: 1, status: 1 });
 ProductSchema.index({ status: 1, isApproved: 1 });
 ProductSchema.index({ avgRating: -1, status: 1 });

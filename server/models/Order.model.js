@@ -126,7 +126,7 @@ const OrderSchema = new mongoose.Schema(
 );
 
 // ── Indexes ───────────────────────────────────────────────────────────────────
-OrderSchema.index({ orderNumber: 1 });
+// OrderSchema.index({ orderNumber: 1 }); // Removed: Created automatically by unique: true
 OrderSchema.index({ user: 1, createdAt: -1 }); // Fast lookup for user's order history
 OrderSchema.index({ status: 1 }); // Admin/Vendor filtering by status
 OrderSchema.index({ 'items.vendor': 1 }); // For vendors to find their orders
